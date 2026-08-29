@@ -2,6 +2,9 @@
 
 Last updated: 2026-08-29
 
+**Live: https://dimos-portfolio.vercel.app**
+Repo: https://github.com/DimosAndronoudis/dimos-portfolio (public)
+
 Personal site for Dimos Andronoudis — AI Engineer / Forward Deployed Engineer.
 Run it with `npm run dev`, then open http://localhost:3000
 
@@ -64,51 +67,40 @@ browser Back button closes a panel, and the page works before hydration.
 
 ---
 
-## Next — deploy to Vercel
+## Deployed
 
-This is the whole remaining critical path. Everything below is optional.
+- [x] Pushed to GitHub — `DimosAndronoudis/dimos-portfolio`, public
+- [x] Vercel CLI installed; project `meltemi/dimos-portfolio` linked
+- [x] Live at https://dimos-portfolio.vercel.app
+- [x] **Push-to-deploy is on** — every push to `master` redeploys production.
+      No `vercel --prod` needed; just commit and push.
+- [x] `metadataBase` reads `NEXT_PUBLIC_SITE_URL`, else Vercel's injected
+      production domain, else localhost. Setting that one env var is the only
+      code change a custom domain needs.
+- [x] Phone number removed from `src/data/profile.ts` before the first push, so
+      it is not in git history. It *is* in the CV PDF, deliberately — the PDF
+      goes to employers.
+- [x] Root `CV.pdf` gitignored. Only `public/cv/dimos-andronoudis-cv.pdf` is
+      served, and it is committed. Re-copy after any CV edit.
+- [x] OG image — `src/app/opengraph-image.tsx`, generated at build time in the
+      site's own language (ink, bench grid, amber, the delivery-loop strip).
+      Fonts read from `assets/*.ttf`, so the build has no CDN dependency.
+- [x] Favicon — `src/app/icon.tsx` replaces the Create Next App default.
+- [x] Twitter card set to `summary_large_image`.
 
-1. **Push to GitHub.** The repo is already `git init`-ed but has no commits.
-   ```bash
-   git add -A
-   git commit -m "Personal portfolio site"
-   gh repo create dimos-portfolio --public --source=. --push
-   ```
-2. **Install the CLI** — not currently installed, and it unlocks `vercel env`,
-   `vercel deploy` and `vercel logs`:
-   ```bash
-   npm i -g vercel
-   ```
-3. **Deploy.**
-   ```bash
-   vercel          # preview URL
-   vercel --prod   # production
-   ```
-   Zero config needed — Vercel detects Next.js. No environment variables exist,
-   so there is nothing to set up.
-4. **Domain.** Decide between `dimosandronoudis.com` (or similar) and the free
-   `*.vercel.app` subdomain. A real domain reads better on applications.
-5. **Put the URL on** the CV, the LinkedIn profile, and the GitHub profile README.
+### Verified on the deployed site, not just locally
 
-### Before it goes public — check these yourself
+- `og:image` 200, 1200×630 PNG · `og:url` resolves to the real domain
+- `/cv/dimos-andronoudis-cv.pdf` 200
+- The Spotify link is present in the shipped HTML
 
-- [ ] Open `/#cv` and confirm the PDF iframe renders acceptably in your browser.
-      If it looks cramped, say so and it can become a rendered page image.
-- [ ] Confirm `public/cv/dimos-andronoudis-cv.pdf` is the CV version you want
-      public. It is a copy of `CV.pdf` from the repo root — re-copy after any edit.
-- [ ] Decide whether the phone number should appear. It is in
-      `src/data/profile.ts` as `profile.phone` but is deliberately not rendered.
-- [ ] Read the eight project descriptions once. The four written from READMEs
-      are accurate to those READMEs, but you know the projects better.
+## What's left, in rough order of value
 
----
-
-## Optional, in rough order of value
-
-- [ ] **Open Graph image.** Right now a shared link has no preview card. A
-      static `opengraph-image.png` (or a generated one) is ~20 minutes and makes
-      the link look deliberate when pasted into a message or a job application.
-- [ ] **`favicon.ico`** — still the Next.js default.
+- [ ] **A domain.** `dimosandronoudis.com` reads better on an application than
+      a `.vercel.app`. Buy it, add it in the Vercel dashboard, then set
+      `NEXT_PUBLIC_SITE_URL` — nothing else changes.
+- [ ] **Put the URL on** the CV, the LinkedIn profile, and the GitHub profile
+      README. The site is worthless if nobody is pointed at it.
 - [ ] **GitHub API integration.** Pull stars, primary language and last-commit
       date onto each project row at build time. Proves the repos are alive.
       Cache it; don't call the API per request.
