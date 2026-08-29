@@ -1,0 +1,42 @@
+import { profile } from "@/data/profile";
+
+export function Masthead() {
+  return (
+    <header className="text-center">
+      <h1 className="font-display text-[clamp(2rem,5.5vw,3.5rem)] font-extrabold leading-[1.05] tracking-[-0.03em]">
+        {profile.name}
+      </h1>
+
+      <p className="label mt-5">
+        Personal site — my skills, my knowledge, and the things I have built
+      </p>
+
+      <p className="mx-auto mt-8 max-w-2xl leading-relaxed text-muted">
+        {profile.summary}
+      </p>
+
+      {/* I make music too — the one link that isn't about the day job. */}
+      <div className="mt-8 flex justify-center">
+        <a
+          href={profile.spotify}
+          target="_blank"
+          rel="noreferrer"
+          className="group inline-flex items-center gap-2.5 border border-line bg-panel px-4 py-2.5 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-muted transition-colors hover:border-signal hover:text-signal"
+        >
+          <span
+            aria-hidden
+            className="flex h-3 items-end gap-[2px] text-signal"
+          >
+            <span className="w-[2px] bg-current" style={{ height: "45%" }} />
+            <span className="w-[2px] bg-current" style={{ height: "100%" }} />
+            <span className="w-[2px] bg-current" style={{ height: "65%" }} />
+          </span>
+          Music
+          <span className="text-dim transition-colors group-hover:text-signal">
+            ↗
+          </span>
+        </a>
+      </div>
+    </header>
+  );
+}
