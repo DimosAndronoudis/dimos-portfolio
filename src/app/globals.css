@@ -43,6 +43,24 @@
     mask-image: radial-gradient(ellipse 100% 70% at 50% 0%, #000 20%, transparent 78%);
   }
 
+  /* Tailwind v4 preflight gives buttons `cursor: default`. Anything that
+     responds to a click should say so, so restore the pointer site-wide
+     rather than remembering a utility class on every control. */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  a[href],
+  summary,
+  label[for],
+  select,
+  [tabindex]:not([tabindex="-1"]):not(input):not(textarea) {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+
   ::selection {
     background-color: var(--color-signal);
     color: var(--color-ink);

@@ -7,6 +7,8 @@ export interface ConsolePanel {
   id: string;
   label: string;
   panel: ReactNode;
+  /** Rendered before the label in the `aside` slot only. */
+  icon?: ReactNode;
 }
 
 function subscribeToHash(onChange: () => void) {
@@ -82,13 +84,22 @@ export function Console({
             onClick={() => toggle(aside.id)}
             aria-expanded={aside.id === hash}
             aria-controls={`panel-${aside.id}`}
-            className={`font-mono text-[0.6875rem] uppercase tracking-[0.16em] underline underline-offset-[6px] transition-colors ${
+            className={`group flex flex-col items-center gap-2.5 transition-colors ${
               aside.id === hash
-                ? "text-signal decoration-signal"
-                : "text-dim decoration-line hover:text-signal hover:decoration-signal"
+                ? "text-signal"
+                : "text-dim hover:text-signal"
             }`}
           >
-            {aside.label}
+            {aside.icon}
+            <span
+              className={`font-mono text-[0.75rem] uppercase tracking-[0.16em] underline underline-offset-[6px] transition-colors ${
+                aside.id === hash
+                  ? "decoration-signal"
+                  : "decoration-line group-hover:decoration-signal"
+              }`}
+            >
+              {aside.label}
+            </span>
           </button>
         </div>
       ) : null}

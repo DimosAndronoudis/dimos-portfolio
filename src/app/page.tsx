@@ -8,6 +8,7 @@ import { Cv } from "@/components/panels/Cv";
 import { LinkIndex } from "@/components/index/LinkIndex";
 import { ContactAside } from "@/components/index/ContactAside";
 import { SceneBackdrop } from "@/components/scene/SceneBackdrop";
+import { DocumentIcon } from "@/components/icons/DocumentIcon";
 
 const panels: ConsolePanel[] = [
   { id: "projects", label: "Projects", panel: <Projects /> },
@@ -17,7 +18,12 @@ const panels: ConsolePanel[] = [
 ];
 
 /* The CV is a document, not another section — it gets its own quieter slot. */
-const cvPanel: ConsolePanel = { id: "cv", label: "CV", panel: <Cv /> };
+const cvPanel: ConsolePanel = {
+  id: "cv",
+  label: "CV",
+  panel: <Cv />,
+  icon: <DocumentIcon className="h-9 w-9" />,
+};
 
 export default function Home() {
   return (
