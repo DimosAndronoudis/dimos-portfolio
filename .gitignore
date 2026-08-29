@@ -42,3 +42,6 @@ next-env.d.ts
 
 # Working copy of the CV. The served copy is public/cv/ — re-copy after edits.
 /CV.pdf
+
+.vercel
+.env*
