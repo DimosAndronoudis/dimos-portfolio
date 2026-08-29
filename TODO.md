@@ -87,11 +87,22 @@ browser Back button closes a panel, and the page works before hydration.
       Fonts read from `assets/*.ttf`, so the build has no CDN dependency.
 - [x] Favicon — `src/app/icon.tsx` replaces the Create Next App default.
 - [x] Twitter card set to `summary_large_image`.
+- [x] `sitemap.xml` and `robots.txt` — `robots` disallows `/cv/`, so the PDF
+      stays reachable and linked but does not become its own search result.
+      The sitemap lists only `/`; the console panels are URL fragments and a
+      crawler does not treat those as separate documents.
+- [x] Real 404 page (`src/app/not-found.tsx`), `noindex`, in the site's own
+      type and colour, linking back to Home / Projects / CV.
+- [x] Origin resolution lives in `src/lib/site.ts` — metadata, sitemap and
+      robots all read the same value.
 
 ### Verified on the deployed site, not just locally
 
 - `og:image` 200, 1200×630 PNG · `og:url` resolves to the real domain
 - `/cv/dimos-andronoudis-cv.pdf` 200
+- `/robots.txt` 200 text/plain · `/sitemap.xml` 200 application/xml, both with
+  the real domain baked in
+- `/nope` returns HTTP 404 with the custom page, not the framework default
 - The Spotify link is present in the shipped HTML
 
 ## What's left, in rough order of value
@@ -106,8 +117,6 @@ browser Back button closes a panel, and the page works before hydration.
       Cache it; don't call the API per request.
 - [ ] **Lighthouse pass** on the deployed URL, mobile profile especially. The
       3D scene is desktop-gated so mobile should already score well — verify.
-- [ ] **`sitemap.ts` and `robots.ts`** so the site is indexable.
-- [ ] **A real 404 page.** Currently the framework default.
 - [ ] **Project detail pages** (`/projects/[id]`), if you ever want the
       `fullDescription` and `highlights` fields to be visible — both are
       populated in the data but nothing renders them yet.
