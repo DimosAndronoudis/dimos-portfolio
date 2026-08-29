@@ -14,29 +14,6 @@ export function Masthead() {
       <p className="mx-auto mt-8 max-w-2xl leading-relaxed text-muted">
         {profile.summary}
       </p>
-
-      {/* I make music too — the one link that isn't about the day job. */}
-      <div className="mt-8 flex justify-center">
-        <a
-          href={profile.spotify}
-          target="_blank"
-          rel="noreferrer"
-          className="group inline-flex items-center gap-2.5 border border-line bg-panel px-4 py-2.5 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-muted transition-colors hover:border-signal hover:text-signal"
-        >
-          <span
-            aria-hidden
-            className="flex h-3 items-end gap-[2px] text-signal"
-          >
-            <span className="w-[2px] bg-current" style={{ height: "45%" }} />
-            <span className="w-[2px] bg-current" style={{ height: "100%" }} />
-            <span className="w-[2px] bg-current" style={{ height: "65%" }} />
-          </span>
-          Music
-          <span className="text-dim transition-colors group-hover:text-signal">
-            ↗
-          </span>
-        </a>
-      </div>
     </header>
   );
 }

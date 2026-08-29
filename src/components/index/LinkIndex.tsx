@@ -1,7 +1,12 @@
 import { profile } from "@/data/profile";
 import { liveProjects } from "@/data/projects";
 
-const strip = (url: string) => url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
+/* Display form: no scheme, no www, no tracking query, no trailing slash. */
+const strip = (url: string) =>
+  url
+    .replace(/^https?:\/\/(www\.)?/, "")
+    .replace(/\?.*$/, "")
+    .replace(/\/$/, "");
 
 const profiles = [
   { label: "GitHub", href: profile.github },

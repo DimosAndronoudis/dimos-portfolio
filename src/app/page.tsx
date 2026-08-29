@@ -14,8 +14,10 @@ const panels: ConsolePanel[] = [
   { id: "experience", label: "Experience", panel: <Experience /> },
   { id: "education", label: "Education", panel: <Education /> },
   { id: "research", label: "Research", panel: <Research /> },
-  { id: "cv", label: "CV", panel: <Cv /> },
 ];
+
+/* The CV is a document, not another section — it gets its own quieter slot. */
+const cvPanel: ConsolePanel = { id: "cv", label: "CV", panel: <Cv /> };
 
 export default function Home() {
   return (
@@ -26,7 +28,7 @@ export default function Home() {
         <Masthead />
 
         <div className="mt-16">
-          <Console panels={panels} />
+          <Console panels={panels} aside={cvPanel} />
         </div>
 
         <div className="mt-28 grid gap-10 border-t border-line pt-8 md:grid-cols-[1fr_15rem]">
